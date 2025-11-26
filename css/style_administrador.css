@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(90deg, #0d0b3d, #2a24c9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: #fff;
+    padding: 30px;
+    width: 350px;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+form {
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="search"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 20px); /* Ajusta a largura para considerar o padding */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    background: #f2eded;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #a147f0;
+    border: none;
+    color: #fff; /* Cor do texto do botão */
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background: #8a2be2;
+}

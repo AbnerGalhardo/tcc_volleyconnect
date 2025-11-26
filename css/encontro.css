@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #F4EEEE;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 25px;
+    background: #F4EEEE;
+}
+
+header h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.back {
+    font-size: 30px;
+    text-decoration: none;
+    color: black;
+}
+
+.icons img {
+    width: 28px;
+    margin-left: 15px;
+}
+
+.lista-atletas {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding: 20px 40px;
+}
+
+.card {
+    text-align: center;
+    cursor: pointer;
+}
+
+.card img {
+    width: 140px;
+    height: 140px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.card input {
+    margin-top: 10px;
+}
+
+.card span {
+    display: block;
+    margin-top: 5px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.continuar {
+    grid-column: span 4;
+    width: 200px;
+    justify-self: end;
+    margin-right: 20px;
+    background: black;
+    color: white;
+    padding: 12px 20px;
+    font-size: 22px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,56 @@
+body {
+    background: linear-gradient(135deg, #0D0B4F, #4118A8);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.modal {
+    background: white;
+    padding: 25px;
+    width: 350px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.foto {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.texto {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.btn {
+    width: 45%;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 6px;
+}
+
+.confirmar {
+    background: #AD39FF;
+    color: white;
+}
+
+.cancelar {
+    background: #E0E0E0;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    padding-top: 12px;
+}

@@ -1,0 +1,280 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+/* Container principal */
+.config-container {
+    background: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    padding: 30px 0;
+    background-color: #fff;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Item de configuração */
+.config-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #e9ecef;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.config-item:hover {
+    background-color: #e9ecef;
+}
+
+.config-item:last-child {
+    border-bottom: none;
+}
+
+/* Item do modo noturno com destaque */
+.modo-noturno-item {
+    border: 2px solid #8b5cf6;
+    background-color: #fff;
+    margin: 0;
+}
+
+.modo-noturno-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Conteúdo do item */
+.config-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.config-label {
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Ação do item */
+.config-action {
+    display: flex;
+    align-items: center;
+}
+
+.config-action i {
+    font-size: 18px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.config-item:hover .config-action i {
+    color: #333;
+}
+
+/* Toggle Switch para modo noturno */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.btn-edit {
+    background-color: #8b5cf6;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    height: 44px;
+}
+
+#retorno
+{
+    color: white;
+    font-size: large;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #333;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #333;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Efeito de clique nos itens */
+.config-item:active {
+    transform: scale(0.98);
+}
+
+/* Dropdown específico para idioma */
+.dropdown-item .config-action i {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.dropdown-item:hover .config-action i {
+    transform: rotate(180deg);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .config-container {
+        margin: 0;
+    }
+    
+    h1 {
+        font-size: 24px;
+        padding: 20px 0;
+    }
+    
+    .config-item {
+        padding: 18px 20px;
+    }
+    
+    .config-label {
+        font-size: 15px;
+    }
+    
+    .config-action i {
+        font-size: 16px;
+    }
+    
+    .toggle-switch {
+        width: 50px;
+        height: 28px;
+    }
+    
+    .slider:before {
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(22px);
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+    
+    .config-item {
+        padding: 15px;
+    }
+    
+    .config-label {
+        font-size: 14px;
+    }
+    
+    .config-action i {
+        font-size: 14px;
+    }
+    
+    .toggle-switch {
+        width: 45px;
+        height: 25px;
+    }
+    
+    .slider:before {
+        height: 17px;
+        width: 17px;
+        left: 4px;
+        bottom: 4px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(20px);
+    }
+}
+
+/* Animações suaves */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.config-item {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.config-item:nth-child(2) { animation-delay: 0.1s; }
+.config-item:nth-child(3) { animation-delay: 0.2s; }
+.config-item:nth-child(4) { animation-delay: 0.3s; }
+.config-item:nth-child(5) { animation-delay: 0.4s; }
+.config-item:nth-child(6) { animation-delay: 0.5s; }
+

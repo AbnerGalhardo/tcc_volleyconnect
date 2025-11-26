@@ -1,0 +1,129 @@
+/* Fundo em gradiente */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(90deg, #0d0b3d, #2a24c9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container do login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Caixa branca */
+.login-box {
+  background: #fff;
+  padding: 30px;
+  width: 350px;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Ícone */
+.icon {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+/* Título e link */
+h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #000;
+}
+
+h2 a {
+  color: #0078d7;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+h2 a:hover {
+  text-decoration: underline;
+}
+
+/* Labels */
+label {
+  text-align: left;
+  font-weight: bold;
+  margin: 10px 0 5px;
+  font-size: 14px;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  background: #f2eded;
+  font-size: 14px;
+  border-radius: 2px;
+}
+
+/* Botão */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #a147f0;
+  border: none;
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background-color: #8b5cf6;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  height: 44px;
+}
+
+button:hover {
+  background: #8a2be2;
+}
+/* Subtítulo */
+.subtitulo {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px 0 15px;
+  color: #000;
+}
+
+/* Grupo de radios */
+.radio-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.radio-group label {
+  display: flex; /* Usa flexbox para alinhar o conteúdo da label */
+  align-items: center; /* Alinha verticalmente o radio button e o texto */
+  margin: 10px 0; /* Mantive a margem para espaçamento entre as opções */
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 8px;
+  width: auto; /* Sobrescreve o width: 100% para radio buttons */
+  margin-bottom: 0; /* Remove a margem inferior que empurra o texto */
+}

@@ -1,0 +1,100 @@
+<?php
+    session_start();
+    require_once 'includes/funcoes.php';
+    require_once 'core/conexao.php';
+    require_once 'core/sql.php';
+    require_once 'core/mysql.php';
+    include 'includes/valida_login.php';
+
+    $criterio = [
+        ['id_usuario', '=', $_SESSION['login']['usuario']['id']]
+    ];
+
+
+
+    $atleta = buscar(
+        'atleta',
+        [
+            'id',
+            'id_time',
+            'posicao',
+            'genero',
+            '(select nome 
+                from time
+                where time.id = atleta.id_time) as nome_time'
+        ],
+        $criterio
+    );
+    $atleta = $atleta[0];
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<link rel="stylesheet" href="css/style_perfil.css">
+<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Perfil</title>
+    <link rel="stylesheet" href="style_perfil.css">
+    <!-- Font Awesome para ícones (ex: ícone de perfil) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="profile-container">
+        <h1>SEU PERFIL</h1>
+
+        <div class="profile-section foto-section">
+            <div class="profile-icon-placeholder">
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <div class="info-group">
+                <span class="info-label">Nome:</span>
+                <span class="info-value"><?php echo htmlspecialchars($_SESSION['login']['usuario']['nome']); ?></span>
+            </div>
+        </div>
+        <div class="profile-section">
+            <div class="info-group">
+                <span class="info-label">Time:</span>
+                <span class="info-value"><?php echo htmlspecialchars($atleta['nome_time']); ?></span>
+            </div>
+        </div>
+        <div class="profile-section">
+            <div class="info-group">
+                <span class="info-label">Gênero:</span>
+                <span class="info-value"><?php echo htmlspecialchars($atleta['genero']); ?></span>
+            </div>
+        </div>
+        <div class="profile-section">
+            <div class="info-group">
+                <span class="info-label">Posição:</span>
+                <span class="info-value"><?php echo htmlspecialchars($atleta['posicao']); ?></span>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <div class="info-group">
+                <span class="info-label">Email:</span>
+                <span class="info-value"><?php echo htmlspecialchars($_SESSION['login']['usuario']['email']); ?></span>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <div class="info-group">
+                <span class="info-label">Senha:</span>
+                <span class="info-value">********</span> <!-- Senha mascarada -->
+            </div>
+        </div>
+        <br>
+        <h2>
+        <button class="btn-edit" id="retorno"><a href="tela_principal.php">VOLTAR</a></button>
+      </h2>
+    </div>
+</body>
+</html>
+

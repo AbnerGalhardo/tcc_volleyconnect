@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Criar Conta</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <img src="img/logo.png" alt="Ícone" class="icon">
+      <h1>Criar Conta</h1>
+
+      <form action="#" onsubmit="return redirecionarPagina(event)">
+        <p class="subtitulo">Selecione o tipo de usuário</p>
+
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="tipo_usuario" value="atleta">
+            Atleta
+          </label>
+
+          <label>
+            <input type="radio" name="tipo_usuario" value="torcedor">
+            Torcedor
+          </label>
+        </div>
+
+        <button type="submit">Continuar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function redirecionarPagina(event) {
+      event.preventDefault();
+      
+      const tipoUsuario = document.querySelector('input[name="tipo_usuario"]:checked');
+      
+      if (!tipoUsuario) {
+        alert('Por favor, selecione um tipo de usuário.');
+        return false;
+      }
+      
+      switch (tipoUsuario.value) {
+        case 'atleta':
+          window.location.href = 'cadastro_atleta.php';
+          break;
+        case 'torcedor':
+          window.location.href = 'cadastro_torcedor.php';
+          break;
+      }
+      
+      return false;
+    }
+  </script>
+</body>
+</html>
