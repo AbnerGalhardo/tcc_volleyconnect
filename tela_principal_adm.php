@@ -24,8 +24,7 @@
             <div class="header-menu">
                 <div class="header-option">
                 <?php if(($_SESSION['login']['usuario']['perfil']=='adm')): ?>
-                        <a href="config_adm
-                        .php" class="header-item">
+                        <a href="config_adm.php" class="header-item">
                             <img src="./img/config.png" alt="Ícone Perfil">
                         </a>
                     <?php endif ?>

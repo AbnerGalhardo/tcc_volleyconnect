@@ -22,6 +22,7 @@ include 'includes/valida_login.php';
         
         <form method="post" action="config.php">
             
+            <a class="botão" href='notif.php'>
             <div class="config-item">
                 <div class="config-content">
                     <span class="config-label">Notificações</span>
@@ -29,8 +30,9 @@ include 'includes/valida_login.php';
                 <div class="config-action">
                     <i class="fas fa-chevron-right"></i>
                 </div>
-            </div>
+            </div></a>
 
+            <a class="botão" href='meus_encontros.php'>
             <div class="config-item">
                 <div class="config-content">
                     <span class="config-label">Meus encontros</span>
@@ -38,7 +40,7 @@ include 'includes/valida_login.php';
                 <div class="config-action">
                     <i class="fas fa-chevron-right"></i>
                 </div>
-            </div>
+            </div></a>
 
             <div class="config-item">
                 <div class="config-content">

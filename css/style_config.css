@@ -278,3 +278,9 @@ input:checked + .slider:before {
 .config-item:nth-child(5) { animation-delay: 0.4s; }
 .config-item:nth-child(6) { animation-delay: 0.5s; }
 
+.botão {
+    width: 100%;
+    border: none;
+    text-decoration: none;
+}
+

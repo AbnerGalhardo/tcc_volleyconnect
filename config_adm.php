@@ -14,7 +14,6 @@ include 'includes/valida_login.php';
     <title>Configurações</title>
     <link rel="stylesheet" href="css/style_config.css">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="config-container">
@@ -22,6 +21,7 @@ include 'includes/valida_login.php';
         
         <form method="post" action="config.php">
             
+            <a class="botão" href='notif.php'>
             <div class="config-item">
                 <div class="config-content">
                     <span class="config-label">Notificações</span>
@@ -29,17 +29,18 @@ include 'includes/valida_login.php';
                 <div class="config-action">
                     <i class="fas fa-chevron-right"></i>
                 </div>
-            </div>
+            </div></a>
 
-            <div class="config-item">
+            <a class="botão" href='cadastro_jogo.php'><div class="config-item">
                 <div class="config-content">
                     <span class="config-label">Cadastro de Jogos</span>
                 </div>
                 <div class="config-action">
                     <i class="fas fa-chevron-right"></i>
                 </div>
-            </div>
-
+            </div></a>
+        
+            <a class="botão" href='meus_encontros.php'>
             <div class="config-item">
                 <div class="config-content">
                     <span class="config-label">Meus encontros</span>
@@ -47,7 +48,7 @@ include 'includes/valida_login.php';
                 <div class="config-action">
                     <i class="fas fa-chevron-right"></i>
                 </div>
-            </div>
+            </div></a>
 
             <div class="config-item">
                 <div class="config-content">
