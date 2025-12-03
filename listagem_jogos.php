@@ -83,7 +83,7 @@
         <div class="row">
             <div class="col-md-12">
             <h2>
-        <button class="btn-edit" id="retorno"><a href="tela_principal.php">VOLTAR</a></button>
+        <button class="btn-edit" id="retorno"><a href="tela_principal_adm.php">VOLTAR</a></button>
       </h2>
                 <?php
                     include 'includes/rodape.php';

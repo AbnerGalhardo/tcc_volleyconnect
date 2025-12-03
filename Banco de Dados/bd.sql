@@ -137,12 +137,28 @@ insert into time (id, nome, genero)
     
 insert into atleta (nome, genero, posicao, idade, id_time, id_usuario)
 	values 
-	('Carolana', 'Feminino', 'Central', 32, 3, 10);
+	('Lucas Saatkamp', 'Masculino', 'Central', 39, 1, 11),
+	('Otávio Pinto', 'Masculino', 'Central', 34, 6, 12),
+	('Darlan Souza', 'Masculino', 'Central', 23, 2, 13),
+	('Javad Karimi', 'Masculino', 'Central', 27, 3, 14),
+    ('Rafael Forster', 'Masculino', 'Central', 19, 4, 15),
+	('Isac Santos', 'Masculino', 'Central', 26, 5, 16);
+
     
 insert into campeonato 
 values  (1, 'Regional', 'Feminino'),
 		(2, 'Paulista', 'Feminino'),
         (3, 'Nacional', 'Feminino');
+        
+
+INSERT INTO usuario (nome, cpf, email, senha) 
+VALUES ('Lucas Saatkamp', '123.123.123-32', 'lucas@gmail.com', '1212'),
+       ('Darlan Souza', '12312332112', 'darlan@gmail.com', '1212'),
+       ('Javad Karimi', '32132132112', 'javad@gmail.com', '1212'),
+       ('Isac Santos', '65465445643', 'isac@gmail.com', '1212'),
+       ('Otávio Pinto', '87667865456', 'otavio@gmail.com', '1212'),
+       ('Rafael Forster', '86576556754', 'rafa@gmail.com', '1212');
+
 
 select * from usuario;
 select * from jogo;

@@ -1,14 +1,31 @@
 <?php
-$atletas = [
-    ["id" => 1, "nome" => "Carolana", "img" => "img/atletas/carolana.jpg"],
-    ["id" => 2, "nome" => "Julia B.", "img" => "img/atletas/julia.jpg"],
-    ["id" => 3, "nome" => "Rosamaria", "img" => "img/atletas/rosamaria.jpg"],
-    ["id" => 4, "nome" => "Gattaz", "img" => "img/atletas/gattaz.jpg"],
-    ["id" => 5, "nome" => "Darlan", "img" => "img/atletas/darlan.jpg"],
-    ["id" => 6, "nome" => "Lucas B.", "img" => "img/atletas/lucas.jpg"],
-    ["id" => 7, "nome" => "Honorato", "img" => "img/atletas/honorato.jpg"],
-    ["id" => 8, "nome" => "Lucarelli", "img" => "img/atletas/lucarelli.jpg"]
-];
+session_start();
+require_once "core/conexao.php";
+require_once "includes/valida_login.php";
+
+$con = conecta();
+
+// Buscar todos os atletas com nome do usuário
+$sql = "
+    SELECT 
+        atleta.id,
+        usuario.nome AS nome_atleta
+    FROM atleta
+    INNER JOIN usuario ON usuario.id = atleta.id_usuario
+    ORDER BY usuario.nome
+";
+
+$result = mysqli_query($con, $sql);
+$atletas = [];
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $atletas[] = [
+        "id" => $row["id"],
+        "nome" => $row["nome_atleta"],
+        // foto padrão por enquanto
+        "img" => "img/atletas/default.png"
+    ];
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,20 +42,24 @@ $atletas = [
 <header>
     <a href="cronograma_detalhes.php" class="back">←</a>
     <h2>SELECIONE SEU ATLETA PARA ENCONTRO</h2>
-    <div class="icons">
-        
-    </div>
+    <div class="icons"></div>
 </header>
 
 <form method="GET" action="confirma_encontro.php" class="lista-atletas">
 
-    <?php foreach ($atletas as $a): ?>
-        <label class="card">
-            <img src="<?= $a['img'] ?>">
-            <input type="radio" name="atleta" value="<?= $a['id'] ?>" required>
-            <span><?= $a['nome'] ?></span>
-        </label>
-    <?php endforeach; ?>
+    <?php if (empty($atletas)): ?>
+        <p style="font-size:20px; text-align:center; grid-column: span 4;">
+            Nenhum atleta cadastrado ainda.
+        </p>
+    <?php else: ?>
+        <?php foreach ($atletas as $a): ?>
+            <label class="card">
+                <img src="<?= $a['img'] ?>">
+                <input type="radio" name="atleta" value="<?= $a['id'] ?>" required>
+                <span><?= $a['nome'] ?></span>
+            </label>
+        <?php endforeach; ?>
+    <?php endif; ?>
 
     <button type="submit" class="continuar">Continuar</button>
 </form>
