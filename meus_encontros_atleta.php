@@ -117,7 +117,7 @@ body {
 <body>
 
 <div class="topo">
-    <a href="config.php" class="back">←</a>
+    <a href="config_atleta.php" class="back">←</a>
     <h1>Meus Encontros</h1>
     <div></div>
 </div>
@@ -125,8 +125,8 @@ body {
 <div class="container">
     <?php if (empty($encontros)): ?>
         <div class="empty">
-            <p style="font-size:18px; margin:0 0 8px 0;">Você ainda não marcou nenhum encontro.</p>
-            <p class="small">Vá até o cronograma e escolha um atleta para marcar seu encontro.</p>
+            <p style="font-size:18px; margin:0 0 8px 0;">Nenhum torcedor marcou encontro com você.</p>
+            <p class="small">Aguarde até um torcedor marcar um encontro.</p>
         </div>
     <?php else: ?>
         <?php foreach ($encontros as $row): 

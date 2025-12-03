@@ -1,41 +1,83 @@
 <?php
-    session_start();
-    require_once 'includes/funcoes.php';
-    require_once 'core/conexao.php';
-    require_once 'core/sql.php';
-    require_once 'core/mysql.php';
-    include 'includes/valida_login.php';
+require_once 'includes/funcoes.php';
+require_once 'core/conexao.php';
+require_once 'core/sql.php';
+require_once 'core/mysql.php';
 
-    $criterio = [
-        ['id_usuario', '=', $_SESSION['login']['usuario']['id']]
-    ];
+$con = conecta();
 
+if(!$con){
+    die("Erro ao conectar com o banco.");
+}
 
+// opcional: filtrar por mês via GET (mes=1..12 ou 'todos')
+$mesFilter = isset($_GET['mes']) ? $_GET['mes'] : 'todos';
+$mesInt = null;
+if ($mesFilter !== 'todos' && is_numeric($mesFilter)) {
+    $mesInt = intval($mesFilter);
+}
 
-    $atleta = buscar(
-        'atleta',
-        [
-            'id',
-            'id_time',
-            'posicao',
-            'genero',
-            '(select nome 
-                from time
-                where time.id = atleta.id_time) as nome_time'
-        ],
-        $criterio
-    );
-    $atleta = $atleta[0];
+// busca jogos (aplica filtro por mês se fornecido)
+$sql = "
+    SELECT 
+        jogo.id,
+        jogo.local,
+        jogo.data,
+        jogo.genero,
+        t1.nome AS time1,
+        t2.nome AS time2,
+        camp.nome AS campeonato
+    FROM jogo
+    LEFT JOIN time t1 ON jogo.id_time1 = t1.id
+    LEFT JOIN time t2 ON jogo.id_time2 = t2.id
+    LEFT JOIN campeonato camp ON jogo.id_campeonato = camp.id
+";
+
+if ($mesInt) {
+    // seleciona mês (MONTH(data) = ?)
+    $sql .= " WHERE MONTH(jogo.data) = " . $mesInt;
+}
+$sql .= " ORDER BY jogo.data ASC";
+
+$result = $con->query($sql);
+
+// preparar lista de jogos em array para renderizar
+$jogosList = [];
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $ts = strtotime($row['data']);
+        $mesNum = intval(date('n', $ts));
+        $dia = date('d/m', $ts);
+        $hora = date('H:i', $ts);
+
+        $jogosList[] = [
+            'id' => $row['id'],
+            'time1' => $row['time1'] ?? 'Time A',
+            'time2' => $row['time2'] ?? 'Time B',
+            'campeonato' => $row['campeonato'] ?? '',
+            'local' => $row['local'] ?? '',
+            'dia' => $dia,
+            'hora' => $hora,
+            'mes' => $mesNum,
+            'genero' => strtolower($row['genero'] ?? ''),
+        ];
+    }
+}
+
+// nomes meses
+$meses = [
+    "JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO",
+    "JULHO","AGOSTO","SETEMBRO","OUTUBRO","NOVEMBRO","DEZEMBRO"
+];
 ?>
 
 <link rel="stylesheet" href="css/cronograma_detalhes.css">
 <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 <div class="container-cronograma">
 
-    <a href="cronograma.php" class="voltar-topo" aria-label="Voltar">←</a>
+    <a href="cronograma_atleta.php" class="voltar-topo" aria-label="Voltar">←</a>
 
     <div class="titulo-area">
-       <label class="titulo-area">
         <select id="select-mes" class="select-mes" aria-label="Selecionar mês"></select>
         <h1 id="titulo-mes" class="titulo">JANEIRO</h1>
     </div>
@@ -54,59 +96,47 @@
             <span class="label-text">CAMPEONATO</span>
             <select id="select-campeonato" aria-label="Selecionar campeonato">
                 <option value="todos">Todos</option>
-                <option value="paulista">Paulista</option>
-                <option value="nacional">Nacional</option>
-                <option value="internacional">Internacional</option>
+                <?php
+                // popula lista de campeonatos distintos (dinâmico)
+                $campSql = "SELECT DISTINCT nome FROM campeonato ORDER BY nome ASC";
+                $campRes = $con->query($campSql);
+                if ($campRes && $campRes->num_rows > 0) {
+                    while($c = $campRes->fetch_assoc()) {
+                        $val = strtolower($c['nome']);
+                        echo '<option value="'.htmlspecialchars($val).'">'.htmlspecialchars($c['nome']).'</option>';
+                    }
+                }
+                ?>
             </select>
         </label>
     </div>
 
     <div class="lista-jogos" id="lista-jogos">
 
-        <div class="item" data-mes="1" data-genero="masculino" data-campeonato="regional">
-            <div class="left">
-                <img src="img/time1.png" alt="Time A">
-                <span class="x">x</span>
-                <img src="img/time2.png" alt="Time B">
+        <?php if (empty($jogosList)): ?>
+            <p style="padding:20px">Nenhum jogo encontrado para este período.</p>
+        <?php endif; ?>
+
+        <?php foreach ($jogosList as $item): ?>
+            <div class="item"
+                 data-mes="<?= htmlspecialchars($item['mes']) ?>"
+                 data-genero="<?= htmlspecialchars($item['genero']) ?>"
+                 data-campeonato="<?= htmlspecialchars(strtolower($item['campeonato'])) ?>">
+
+                <div class="left">
+                    <img src="img/time1.png" alt="<?= htmlspecialchars($item['time1']) ?>">
+                    <span class="x">x</span>
+                    <img src="img/time2.png" alt="<?= htmlspecialchars($item['time2']) ?>">
+                </div>
+
+                <div class="info">
+                    <strong><?= htmlspecialchars(strtoupper($item['campeonato'])) ?></strong><br>
+                    <?= htmlspecialchars($item['local']) ?>, <?= $item['dia'] ?> às <?= $item['hora'] ?>
+                </div>
+
+                <a class="btn" href="disponibilidade.php?jogo=<?= htmlspecialchars($item['id']) ?>">INFORMAR DISPONIBILIDADE</a>
             </div>
-
-            <div class="info">
-                <strong>REGIONAL</strong>
-                Birigui - SP, 15/01 às 15:00
-            </div>
-
-            <a class="btn" href="disponibilidade.php">INFORMAR DISPONIBILIDADE</a>
-        </div>
-
-        <div class="item" data-mes="1" data-genero="masculino" data-campeonato="paulista">
-            <div class="left">
-                <img src="img/time2.png" alt="Time B">
-                <span class="x">x</span>
-                <img src="img/time3.png" alt="Time C">
-            </div>
-
-            <div class="info">
-                <strong>REGIONAL</strong>
-                Birigui - SP, 15/01 às 17:00
-            </div>
-
-            <a class="btn" href="disponibilidade.php">INFORMAR DISPONIBILIDADE</a>
-        </div>
-
-        <div class="item" data-mes="1" data-genero="feminino" data-campeonato="nacional">
-            <div class="left">
-                <img src="img/time1.png" alt="Time A">
-                <span class="x">x</span>
-                <img src="img/time3.png" alt="Time C">
-            </div>
-
-            <div class="info">
-                <strong>REGIONAL</strong>
-                Birigui - SP, 15/01 às 19:00
-            </div>
-
-            <a class="btn" href="disponibilidade.php">INFORMAR DISPONIBILIDADE</a>
-        </div>
+        <?php endforeach; ?>
 
     </div>
 
@@ -132,9 +162,15 @@
         selectMes.appendChild(opt);
     });
 
-    // define valor inicial (1 = Janeiro)
-    selectMes.value = "1";
-    titulo.textContent = meses[0] + "";
+    // define valor inicial (1 = Janeiro) ou tenta manter mês via querystring
+    const urlParams = new URLSearchParams(window.location.search);
+    const mesParam = urlParams.get('mes');
+    if (mesParam && !isNaN(parseInt(mesParam,10))) {
+        selectMes.value = mesParam;
+    } else {
+        selectMes.value = "1";
+    }
+    titulo.textContent = meses[parseInt(selectMes.value,10)-1] + "";
 
     // handler que atualiza o título e aplica o filtro
     function aplicarFiltro() {
@@ -144,18 +180,17 @@
 
         // atualiza título
         const mesIndex = parseInt(mesSel, 10) - 1;
-        titulo.textContent = (meses[mesIndex] || '') + "";
+        titulo.textContent = (meses[mesIndex] || '') + " ▼";
 
         // percorre itens e mostra/oculta
         const itens = lista.querySelectorAll('.item');
         itens.forEach(item => {
             const itemMes = item.getAttribute('data-mes');
-            const itemGenero = item.getAttribute('data-genero') || 'todos';
-            const itemCamp = item.getAttribute('data-campeonato') || 'todos';
+            const itemGenero = (item.getAttribute('data-genero') || 'todos').toLowerCase();
+            const itemCamp = (item.getAttribute('data-campeonato') || 'todos').toLowerCase();
 
             const okMes = (mesSel === 'todos') ? true : (itemMes === mesSel);
             const okGenero = (generoSel === 'todos') ? true : (itemGenero === generoSel);
-            // campeonato do item pode ter valores variados, permitimos 'todos' e também comparar substrings
             const okCamp = (campSel === 'todos') ? true : (itemCamp === campSel);
 
             if (okMes && okGenero && okCamp) {
@@ -171,12 +206,7 @@
     selectGenero.addEventListener('change', aplicarFiltro);
     selectCampeonato.addEventListener('change', aplicarFiltro);
 
-    // if you want an option "Todos meses", uncomment next lines:
-    // const optTodos = document.createElement('option');
-    // optTodos.value = 'todos'; optTodos.textContent = 'Todos'; selectMes.insertBefore(optTodos, selectMes.firstChild);
-
     // aplica filtro inicial
     aplicarFiltro();
 })();
 </script>
-

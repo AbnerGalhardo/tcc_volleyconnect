@@ -92,7 +92,7 @@
         </div>
         <br>
         <h2>
-        <button class="btn-edit" id="retorno"><a href="tela_principal.php">VOLTAR</a></button>
+        <button class="btn-edit" id="retorno"><a href="tela_principal_atleta.php">VOLTAR</a></button>
       </h2>
     </div>
 </body>

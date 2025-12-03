@@ -60,7 +60,6 @@
     </header>
 
     <section class="call-to-action">
-            <h2>VOCÊ TEM 0 ENCONTROS AGENDADOS!</h2>
         </section>
     <main class="main-content">
         <section class="call-to-action">

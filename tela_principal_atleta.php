@@ -22,7 +22,7 @@
             </div>
             <div class="header-menu">
                 <div class="header-option">
-                    <a href="config.php" class="header-item">
+                    <a href="config_atleta.php" class="header-item">
                         <img src="./img/config.png"   alt="Ícone Config">
                     </a>
                     <a href="notif.php" class="header-item">
@@ -57,7 +57,6 @@
     </header>
 
     <section class="call-to-action">
-            <h2>VOCÊ TEM 0 ENCONTROS AGENDADOS!</h2>
         </section>
     <main class="main-content">
         <section class="call-to-action">
@@ -90,7 +89,7 @@
 
     <footer class="main-footer">
         <div class="footer-options">
-            <a href="cronograma.php" class="footer-item">
+            <a href="cronograma_atleta.php" class="footer-item">
                 <img src="./img/cronograma.png" alt="Ícone Cronograma">
                 
             </a>

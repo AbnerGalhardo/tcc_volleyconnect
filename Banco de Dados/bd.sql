@@ -113,6 +113,10 @@ ALTER TABLE atleta
 ADD nome VARCHAR(100),
 ADD foto VARCHAR(200);
 
+ALTER TABLE atleta_encontro_torcedor
+ADD COLUMN status ENUM('pendente', 'confirmado', 'recusado') DEFAULT 'pendente';
+
+
 CREATE TABLE notificacao (
     id INT NOT NULL AUTO_INCREMENT,
     id_usuario INT NOT NULL,
@@ -137,12 +141,12 @@ insert into time (id, nome, genero)
     
 insert into atleta (nome, genero, posicao, idade, id_time, id_usuario)
 	values 
-	('Lucas Saatkamp', 'Masculino', 'Central', 39, 1, 11),
-	('Otávio Pinto', 'Masculino', 'Central', 34, 6, 12),
-	('Darlan Souza', 'Masculino', 'Central', 23, 2, 13),
-	('Javad Karimi', 'Masculino', 'Central', 27, 3, 14),
-    ('Rafael Forster', 'Masculino', 'Central', 19, 4, 15),
-	('Isac Santos', 'Masculino', 'Central', 26, 5, 16);
+	('Lucas Saatkamp', 'Masculino', 'Central', 39, 1, 10),
+	('Otávio Pinto', 'Masculino', 'Central', 34, 6, 11),
+	('Darlan Souza', 'Masculino', 'Central', 23, 2, 12),
+	('Javad Karimi', 'Masculino', 'Central', 27, 3, 13),
+    ('Rafael Forster', 'Masculino', 'Central', 19, 4, 14),
+	('Isac Santos', 'Masculino', 'Central', 26, 5, 15);
 
     
 insert into campeonato 
@@ -151,13 +155,13 @@ values  (1, 'Regional', 'Feminino'),
         (3, 'Nacional', 'Feminino');
         
 
-INSERT INTO usuario (nome, cpf, email, senha) 
-VALUES ('Lucas Saatkamp', '123.123.123-32', 'lucas@gmail.com', '1212'),
-       ('Darlan Souza', '12312332112', 'darlan@gmail.com', '1212'),
-       ('Javad Karimi', '32132132112', 'javad@gmail.com', '1212'),
-       ('Isac Santos', '65465445643', 'isac@gmail.com', '1212'),
-       ('Otávio Pinto', '87667865456', 'otavio@gmail.com', '1212'),
-       ('Rafael Forster', '86576556754', 'rafa@gmail.com', '1212');
+-- INSERT INTO usuario (nome, cpf, email, senha, perfil) 
+-- VALUES ('Lucas Saatkamp', '123.123.123-32', 'lucas@gmail.com', '1212', 'atleta'),
+   --     ('Darlan Souza', '12312332112', 'darlan@gmail.com', '1212', 'atleta'),
+   --     ('Javad Karimi', '32132132112', 'javad@gmail.com', '1212', 'atleta'),
+   --     ('Isac Santos', '65465445643', 'isac@gmail.com', '1212', 'atleta'),
+   --     ('Otávio Pinto', '87667865456', 'otavio@gmail.com', '1212', 'atleta'),
+   --     ('Rafael Forster', '86576556754', 'rafa@gmail.com', '1212', 'atleta'); 
 
 
 select * from usuario;
