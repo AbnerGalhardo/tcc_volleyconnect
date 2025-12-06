@@ -74,6 +74,7 @@ if (!$atletaRow) {
 <meta charset="utf-8">
 <title>Disponibilidade</title>
 <link rel="stylesheet" href="css/disponibilidade.css">
+<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 <style>
 /* Estilo básico compatível com seu layout */
 body { margin:0; font-family: Arial, sans-serif; background:#F6F6F8; color:#111; }

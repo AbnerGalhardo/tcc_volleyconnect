@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// --- 1) Determina id do usuário logado (tenta várias chaves que seu projeto pode usar)
+// Determina id do usuário logado (tenta várias chaves que seu projeto pode usar)
 $userId = null;
 if (isset($_SESSION['login']['usuario']['id'])) {
     $userId = intval($_SESSION['login']['usuario']['id']);
@@ -14,19 +14,18 @@ if (isset($_SESSION['login']['usuario']['id'])) {
 }
 
 if (!$userId) {
-    // não logado -> redireciona para login
     header("Location: login.php");
     exit;
 }
 
-// --- 2) Conexão (path correto)
 require_once __DIR__ . '/core/conexao.php';
 $con = conecta();
 
-// --- 3) Query: pega todos os encontros do torcedor, com dados do atleta, time, jogo e horário do encontro
+// Agora incluindo o STATUS do encontro
 $sql = "
 SELECT 
     aet.id AS registro_id,
+    aet.status AS status_encontro,
     ae.id AS atleta_encontro_id,
     u.nome AS nome_atleta,
     t.nome AS nome_time,
@@ -59,8 +58,8 @@ $stmt->close();
 <meta charset="utf-8">
 <title>Meus Encontros</title>
 <link rel="stylesheet" href="css/meus_encontros.css">
+<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 <style>
-/* Estilo minimal compatível com seu projeto (ajuste se já tiver CSS separado) */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -96,13 +95,17 @@ body {
     line-height:1.3;
 }
 .meta { color: #666; font-size:14px; margin-top:6px; }
-.btn-primary {
-    background:#8a4fff;
-    color:#fff;
+.badge {
     padding:8px 12px;
     border-radius:8px;
-    text-decoration:none;
     font-weight:600;
+    color:#fff;
+}
+.badge-pendente {
+    background:#FFA500;
+}
+.badge-confirmado {
+    background:#4CAF50;
 }
 .empty {
     text-align:center;
@@ -130,13 +133,14 @@ body {
         </div>
     <?php else: ?>
         <?php foreach ($encontros as $row): 
-            // Preparar exibição de datas
             $dataJogoRaw = $row['data_jogo'];
             $horarioEncontroRaw = $row['horario_encontro'];
 
             $dataJogo = $dataJogoRaw ? date("d/m/Y", strtotime($dataJogoRaw)) : '—';
             $horaJogo = $dataJogoRaw ? date("H:i", strtotime($dataJogoRaw)) : '—';
             $horarioEncontro = $horarioEncontroRaw ? date("d/m/Y H:i", strtotime($horarioEncontroRaw)) : '—';
+
+            $status = $row['status_encontro'];
         ?>
             <div class="card">
                 <div class="left">
@@ -150,7 +154,11 @@ body {
                 </div>
 
                 <div class="right">
-                    <a class="btn-primary" href="detalhe_encontro.php?id=<?= intval($row['atleta_encontro_id']) ?>">Ver</a>
+                    <?php if ($status === 'confirmado'): ?>
+                        <span class="badge badge-confirmado">Confirmado</span>
+                    <?php else: ?>
+                        <span class="badge badge-pendente">Pendente</span>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>
