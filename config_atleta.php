@@ -22,7 +22,7 @@ include 'includes/valida_login.php';
         
         <form method="post" action="config.php">
             
-            <a class="botão" href='notif.php'>
+            <a class="botão" href='notif_atleta.php'>
             <div class="config-item">
                 <div class="config-content">
                     <span class="config-label">Notificações</span>
@@ -42,6 +42,7 @@ include 'includes/valida_login.php';
                 </div>
             </div></a>
 
+            <a class="botão" href='ajuda_atleta.php'> 
             <div class="config-item">
                 <div class="config-content">
                     <span class="config-label">Ajuda e perguntas frequentes</span>
@@ -49,7 +50,7 @@ include 'includes/valida_login.php';
                 <div class="config-action">
                     <i class="fas fa-chevron-right"></i>
                 </div>
-            </div>
+            </div></a>
             <br>
                     <h2>
                     <button class="btn-edit" id="retorno"><a href="tela_principal_atleta.php">VOLTAR</a></button>

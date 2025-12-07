@@ -42,6 +42,7 @@ include 'includes/valida_login.php';
                 </div>
             </div></a>
 
+            <a class="botão" href='ajuda.php'> 
             <div class="config-item">
                 <div class="config-content">
                     <span class="config-label">Ajuda e perguntas frequentes</span>
@@ -49,7 +50,7 @@ include 'includes/valida_login.php';
                 <div class="config-action">
                     <i class="fas fa-chevron-right"></i>
                 </div>
-            </div>
+            </div></a>
             <br>
                     <h2>
                     <button class="btn-edit" id="retorno"><a href="tela_principal.php">VOLTAR</a></button>

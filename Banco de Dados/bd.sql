@@ -106,7 +106,6 @@ create table atleta_encontro_torcedor
     primary key (id),
     foreign key (id_atleta_encontro) references atleta_encontro (id),
     foreign key (id_torcedor) references usuario (id)
-    
 );
 
 ALTER TABLE atleta
@@ -127,6 +126,19 @@ CREATE TABLE notificacao (
     FOREIGN KEY (id_usuario) REFERENCES usuario(id)
 );
 
+CREATE TABLE ajuda (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_usuario INT NOT NULL,
+  pergunta TEXT NOT NULL,
+  resposta TEXT DEFAULT NULL,
+  data_pergunta DATETIME DEFAULT CURRENT_TIMESTAMP,
+  data_resposta DATETIME DEFAULT NULL,
+  status ENUM('pendente','respondida') NOT NULL DEFAULT 'pendente',
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id)
+);
+
+
 insert into time (id, nome, genero)
 	values 
          (1, 'Sada', 'Feminino'),
@@ -136,17 +148,17 @@ insert into time (id, nome, genero)
          
 insert into time (id, nome, genero)
 	values 
-	(5, 'Praia Clube', 'Masculino'),
-	(6, 'Cruzeiro', 'Masculino');
+	     (5, 'Praia Clube', 'Masculino'),
+	     (6, 'Cruzeiro', 'Masculino');
     
 insert into atleta (nome, genero, posicao, idade, id_time, id_usuario)
 	values 
-	('Lucas Saatkamp', 'Masculino', 'Central', 39, 1, 10),
-	('Otávio Pinto', 'Masculino', 'Central', 34, 6, 11),
-	('Darlan Souza', 'Masculino', 'Central', 23, 2, 12),
-	('Javad Karimi', 'Masculino', 'Central', 27, 3, 13),
-    ('Rafael Forster', 'Masculino', 'Central', 19, 4, 14),
-	('Isac Santos', 'Masculino', 'Central', 26, 5, 15);
+	('Lucas Saatkamp', 'Masculino', 'Central', 39, 1, 1),
+	('Otávio Pinto', 'Masculino', 'Ponteiro', 34, 6, 2),
+	('Darlan Souza', 'Masculino', 'Oposto', 23, 2, 3),
+	('Javad Karimi', 'Masculino', 'Levantador', 27, 3, 4),
+    ('Rafael Forster', 'Masculino', 'Ponteiro', 19, 4, 5),
+	('Isac Santos', 'Masculino', 'Oposto', 26, 5, 6);
 
     
 insert into campeonato 
@@ -155,13 +167,13 @@ values  (1, 'Regional', 'Feminino'),
         (3, 'Nacional', 'Feminino');
         
 
--- INSERT INTO usuario (nome, cpf, email, senha, perfil) 
--- VALUES ('Lucas Saatkamp', '123.123.123-32', 'lucas@gmail.com', '1212', 'atleta'),
-   --     ('Darlan Souza', '12312332112', 'darlan@gmail.com', '1212', 'atleta'),
-   --     ('Javad Karimi', '32132132112', 'javad@gmail.com', '1212', 'atleta'),
-   --     ('Isac Santos', '65465445643', 'isac@gmail.com', '1212', 'atleta'),
-   --     ('Otávio Pinto', '87667865456', 'otavio@gmail.com', '1212', 'atleta'),
-   --     ('Rafael Forster', '86576556754', 'rafa@gmail.com', '1212', 'atleta'); 
+ INSERT INTO usuario (nome, cpf, email, senha, perfil) 
+ VALUES ('Lucas Saatkamp', '12312312332', 'lucas@gmail.com', '1212', 'atleta'),
+        ('Darlan Souza', '12312332112', 'darlan@gmail.com', '1212', 'atleta'),
+        ('Javad Karimi', '32132132112', 'javad@gmail.com', '1212', 'atleta'),
+        ('Isac Santos', '65465445643', 'isac@gmail.com', '1212', 'atleta'),
+        ('Otávio Pinto', '87667865456', 'otavio@gmail.com', '1212', 'atleta'),
+        ('Rafael Forster', '86576556754', 'rafa@gmail.com', '1212', 'atleta'); 
 
 
 select * from usuario;

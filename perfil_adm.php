@@ -56,7 +56,7 @@ include 'includes/valida_login.php';
         </div>
         <br>
         <h2>
-        <button class="btn-edit" id="retorno"><a href="tela_principal.php">VOLTAR</a></button>
+        <button class="btn-edit" id="retorno"><a href="tela_principal_adm.php">VOLTAR</a></button>
       </h2>
     </div>
 </body>

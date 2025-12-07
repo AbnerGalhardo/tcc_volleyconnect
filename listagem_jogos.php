@@ -57,7 +57,7 @@
                     <thead>
                         <tr>
                             <td>Data</td>
-                            <td>Cmapeonato</td>
+                            <td>Campeonato</td>
                             <td>Time 1</td>
                             <td>Time 2</td>
                         </tr>

@@ -28,7 +28,7 @@
                             <img src="./img/config.png" alt="Ícone Perfil">
                         </a>
                     <?php endif ?>
-                    <a href="notif.php" class="header-item">
+                    <a href="notif_adm.php" class="header-item">
                         <img src="./img/notif.png" alt="Ícone Notificações">
                     </a>
                     <?php if(($_SESSION['login']['usuario']['perfil']=='atleta')): ?>

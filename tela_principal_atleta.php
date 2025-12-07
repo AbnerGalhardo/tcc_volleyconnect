@@ -25,7 +25,7 @@
                     <a href="config_atleta.php" class="header-item">
                         <img src="./img/config.png"   alt="Ícone Config">
                     </a>
-                    <a href="notif.php" class="header-item">
+                    <a href="notif_atleta.php" class="header-item">
                         <img src="./img/notif.png" alt="Ícone Notificações">
                     </a>
                     <?php if(($_SESSION['login']['usuario']['perfil']=='atleta')): ?>
