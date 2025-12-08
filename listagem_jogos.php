@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>listagem</title>
+        <link rel="stylesheet" href="css/listagem.css">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 </head>
 <body>
