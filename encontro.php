@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once "core/conexao.php";
+require_once "core/sql.php";
+require_once "core/mysql.php";
 require_once "includes/valida_login.php";
 
 $con = conecta();
@@ -22,8 +24,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     $atletas[] = [
         "id" => $row["id"],
         "nome" => $row["nome_atleta"],
-        // foto padrão por enquanto
-        "img" => "img/atletas/default.png"
     ];
 }
 ?>
@@ -48,18 +48,29 @@ while ($row = mysqli_fetch_assoc($result)) {
 <form method="GET" action="confirma_encontro.php" class="lista-atletas">
 
     <?php if (empty($atletas)): ?>
-        <p style="font-size:20px; text-align:center; grid-column: span 4;">
-            Nenhum atleta cadastrado ainda.
-        </p>
-    <?php else: ?>
+    <p style="font-size:20px; text-align:center; grid-column: span 4;">
+        Nenhum atleta cadastrado ainda.
+    </p>
+<?php else: ?>
         <?php foreach ($atletas as $a): ?>
-            <label class="card">
-                <img src="<?= $a['img'] ?>">
-                <input type="radio" name="atleta" value="<?= $a['id'] ?>" required>
-                <span><?= $a['nome'] ?></span>
-            </label>
+            <?php
+                $criterio_atleta = [['id', '=', $a['id']]];
+                $id_time_atleta = buscar('atleta', ['id_time'], $criterio_atleta);
+
+                $criterio_jogo = [['id', '=', $_GET['jogo']]];
+                $ids_times = buscar('jogo', ['id_time1', 'id_time2'], $criterio_jogo);
+            ?>
+
+            <?php if ($id_time_atleta[0]['id_time'] == $ids_times[0]['id_time1'] 
+                   || $id_time_atleta[0]['id_time'] == $ids_times[0]['id_time2']): ?>
+                <label class="card">
+                    <span><?= $a['nome'] ?></span>
+                    <input type="radio" name="atleta" value="<?= $a['id'] ?>" required>
+                </label>
+            <?php endif; ?>
         <?php endforeach; ?>
-    <?php endif; ?>
+<?php endif; ?>
+
 
     <button type="submit" class="continuar">Continuar</button>
 </form>

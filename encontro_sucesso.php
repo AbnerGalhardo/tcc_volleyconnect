@@ -80,7 +80,7 @@ if (!$ok) {
 
 <body>
 <div class="modal">
-    <h2>Encontro agendado!</h2>
+    <h2>Encontro solicitado!</h2>
 
     <a href="tela_principal.php" class="btn">Voltar</a>
 </div>

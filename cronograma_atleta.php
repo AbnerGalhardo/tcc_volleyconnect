@@ -69,7 +69,7 @@ $mesesNome = [
 
 <div class="topo">
     <a href="tela_principal_atleta.php" class="voltar">←</a>
-    <h2><img src="img/calendar.png" class="icon">Cronograma</h2>
+    <h2>Cronograma</h2>
     <div class="icons-right">
     </div>
 </div>
@@ -89,11 +89,32 @@ $mesesNome = [
             <h1><?= $nomeMes ?></h1>
 
             <?php foreach ($jogos as $j): ?>
-                <a href="cronograma_detalhes.php?id=<?= htmlspecialchars($j['id']) ?>">
+
+                <?php
+                    $criterio_jogo = [
+                        ['id', '=', $j['id']]
+                    ];
+
+                    $id_time1 = buscar('jogo', ['id_time1'], $criterio_jogo);
+                    $id_time2 = buscar('jogo', ['id_time2'], $criterio_jogo);
+
+                    $criterio_time1 = [
+                        ['id', '=', $id_time1[0]['id_time1']]
+                    ];
+
+                    $criterio_time2 = [
+                        ['id', '=', $id_time2[0]['id_time2']]
+                    ];
+
+                    $logo1 = buscar('time', ['logo'], $criterio_time1);
+                    $logo2 = buscar('time', ['logo'], $criterio_time2);
+                ?>
+
+                <a href="cronograma_detalhes_atleta.php?id=<?= htmlspecialchars($j['id']) ?>">
                     <div class="jogo" data-mes="<?= $mesNum ?>" data-genero="<?= htmlspecialchars(strtolower($j['genero'])) ?>" data-campeonato="<?= htmlspecialchars(strtolower($j['campeonato'])) ?>">
-                        <img src="img/time1.png" alt="time1">
+                        <img src="<?=$logo1[0]['logo']?>" alt="time1">
                         <span class="x">x</span>
-                        <img src="img/time2.png" alt="time2">
+                        <img src="<?=$logo2[0]['logo']?>" alt="time2">
                         <span class="data"><?= htmlspecialchars($j['dia']) ?></span>
                     </div>
                 </a>

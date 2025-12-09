@@ -77,8 +77,8 @@ if (!$jogo) {
     $linkCancelar = "encontro.php?id_jogo=" . $jogo['id'];
 }
 
-// imagem padrão (substituir quando tiver fotos)
-$img = "img/atletas/default.png";
+// // imagem padrão (substituir quando tiver fotos)
+// $img = "img/atletas/default.png";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -92,7 +92,7 @@ $img = "img/atletas/default.png";
 <body>
 
 <div class="modal">
-    <img src="<?= htmlspecialchars($img) ?>" class="foto" alt="Foto atleta">
+    <!-- <img src="<?= htmlspecialchars($img) ?>" class="foto" alt="Foto atleta"> -->
     <p class="texto">
         Deseja marcar seu encontro <br>
         com <b><?= htmlspecialchars($info['nome_atleta']) ?></b>? <br>

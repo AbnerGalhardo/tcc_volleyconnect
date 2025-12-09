@@ -118,15 +118,36 @@ $meses = [
         <?php endif; ?>
 
         <?php foreach ($jogosList as $item): ?>
+
+            <?php
+                    $criterio_jogo = [
+                        ['id', '=', $item['id']]
+                    ];
+
+                    $id_time1 = buscar('jogo', ['id_time1'], $criterio_jogo);
+                    $id_time2 = buscar('jogo', ['id_time2'], $criterio_jogo);
+
+                    $criterio_time1 = [
+                        ['id', '=', $id_time1[0]['id_time1']]
+                    ];
+
+                    $criterio_time2 = [
+                        ['id', '=', $id_time2[0]['id_time2']]
+                    ];
+
+                    $logo1 = buscar('time', ['logo'], $criterio_time1);
+                    $logo2 = buscar('time', ['logo'], $criterio_time2);
+                ?>
+
             <div class="item"
                  data-mes="<?= htmlspecialchars($item['mes']) ?>"
                  data-genero="<?= htmlspecialchars($item['genero']) ?>"
                  data-campeonato="<?= htmlspecialchars(strtolower($item['campeonato'])) ?>">
 
                 <div class="left">
-                    <img src="img/time1.png" alt="<?= htmlspecialchars($item['time1']) ?>">
+                    <img src="<?=$logo1[0]['logo']?>" alt="<?= htmlspecialchars($item['time1']) ?>">
                     <span class="x">x</span>
-                    <img src="img/time2.png" alt="<?= htmlspecialchars($item['time2']) ?>">
+                    <img src="<?=$logo2[0]['logo']?>" alt="<?= htmlspecialchars($item['time2']) ?>">
                 </div>
 
                 <div class="info">

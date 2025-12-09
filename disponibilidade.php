@@ -119,7 +119,7 @@ body { margin:0; font-family: Arial, sans-serif; background:#F6F6F8; color:#111;
             <div class="slot">
                 <div>
                     <div class="preview">
-                        <img src="<?= htmlspecialchars($foto) ?>" alt="foto">
+                        <!-- <img src="<?= htmlspecialchars($foto) ?>" alt="foto"> -->
                         <div>
                             <strong>Encontro das <?= htmlspecialchars($hora) ?> às <?= date("H:i", strtotime($dtRaw . " +{$r['duracao']} minutes")) ?></strong>
                             <div class="meta"><?= htmlspecialchars($r['nome_torcedor']) ?> — <?= htmlspecialchars($r['local_jogo'] ?? '') ?></div>

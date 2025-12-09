@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once __DIR__ . '/core/conexao.php';
+require_once __DIR__ . '/core/sql.php';
+require_once __DIR__ . '/core/mysql.php';
 $con = conecta();
 
 // garante que está logado
@@ -15,10 +17,12 @@ $userName = $_SESSION['login']['usuario']['nome'] ?? 'Usuário';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pergunta'])) {
     $pergunta = trim($_POST['pergunta']);
     if ($pergunta !== '') {
-        $stmt = $con->prepare("INSERT INTO ajuda (id_usuario, pergunta) VALUES (?, ?)");
-        $stmt->bind_param("is", $userId, $pergunta);
-        $stmt->execute();
-        $stmt->close();
+        $campos_ajuda = [
+            'id_usuario' => $userId,
+            'pergunta' => $pergunta
+        ];
+
+        $idPergunta = insere('ajuda', $campos_ajuda);
         // redireciona para evitar re-submissão
         header("Location: ajuda.php?ok=1");
         exit;
@@ -51,9 +55,9 @@ $res = $con->query($sql);
 $perguntas = $res->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>Ajuda & Perguntas Frequentes</title>
 <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 <style>
