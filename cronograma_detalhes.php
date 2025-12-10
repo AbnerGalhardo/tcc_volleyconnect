@@ -201,7 +201,7 @@ $meses = [
 
         // atualiza título
         const mesIndex = parseInt(mesSel, 10) - 1;
-        titulo.textContent = (meses[mesIndex] || '') + " ▼";
+        titulo.textContent = (meses[mesIndex] || '');
 
         // percorre itens e mostra/oculta
         const itens = lista.querySelectorAll('.item');

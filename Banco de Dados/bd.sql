@@ -6,7 +6,7 @@ use VolleyConnect;
 create table usuario
 (
 	id int not null auto_increment,
-	cpf int not null,
+	cpf varchar(15),
     nome varchar(40),
     email varchar(20),
     senha varchar(20),
@@ -19,7 +19,7 @@ create table time
 (
 	id int not null auto_increment,
 	nome varchar (20),
-    logo varchar (100),
+    logo varchar (400),
 	genero varchar(10),
     primary key (id)
 );
@@ -38,14 +38,6 @@ create table jogo
     local varchar(40),
     data datetime,
     genero varchar(10),
-    placar_time1 int,
-    placar_time2 int,
-    placar_set1_time1 int,
-	placar_set2_time1 int,
-    placar_set3_time1 int,
-    placar_set1_time2 int,
-	placar_set2_time2 int,
-    placar_set3_time2 int,
     id_campeonato int,
     id_time1 int,
     id_time2 int,
@@ -139,18 +131,26 @@ CREATE TABLE ajuda (
 );
 
 
-insert into time (id, nome, genero)
+insert into time (id, nome, logo, genero)
 	values 
-         (1, 'Sada', 'Feminino'),
-         (2, 'Sesi Bauru', 'Feminino'),
-         (3, 'Minas', 'Feminino'),
-         (4, 'Flamengo', 'Feminino');
+         (1, 'Sada', 'https://upload.wikimedia.org/wikipedia/en/9/91/Sada_Cruzeiro_V%C3%B4lei_Logo_02.png', 'Feminino'),
+         (2, 'Sesi Bauru', 'https://pbs.twimg.com/media/GocnatiXwAA5NvX.jpg', 'Feminino'),
+         (3, 'Minas', 'https://upload.wikimedia.org/wikipedia/pt/thumb/e/e5/Escudo_do_Minas_Tenis_Clube.svg/1638px-Escudo_do_Minas_Tenis_Clube.svg.png', 'Feminino'),
+         (4, 'Flamengo', 'https://upload.wikimedia.org/wikipedia/pt/d/d0/SescRJFlamengo.png', 'Feminino');
          
-insert into time (id, nome, genero)
+insert into time (id, nome, logo, genero)
 	values 
-	     (5, 'Praia Clube', 'Masculino'),
-	     (6, 'Cruzeiro', 'Masculino');
+	     (5, 'Praia Clube', 'https://cbv.com.br/_next/image?url=https%3A%2F%2Fassets.volleystation.com%2Fwebsite%2Fteams%2F2152460%2Fbadge.png&w=3840&q=75', 'Masculino');
     
+INSERT INTO usuario (nome, cpf, email, senha, perfil) 
+ VALUES ('Lucas Saatkamp', '12312312332', 'lucas@gmail.com', '1212', 'atleta'),
+        ('Darlan Souza', '12312332112', 'darlan@gmail.com', '1212', 'atleta'),
+        ('Javad Karimi', '32132132112', 'javad@gmail.com', '1212', 'atleta'),
+        ('Isac Santos', '65465445643', 'isac@gmail.com', '1212', 'atleta'),
+        ('Otávio Pinto', '87667865456', 'otavio@gmail.com', '1212', 'atleta'),
+        ('Rafael Forster', '86576556754', 'rafa@gmail.com', '1212', 'atleta'); 
+
+
 insert into atleta (nome, genero, posicao, idade, id_time, id_usuario)
 	values 
 	('Lucas Saatkamp', 'Masculino', 'Central', 39, 1, 1),
@@ -166,15 +166,6 @@ values  (1, 'Regional', 'Feminino'),
 		(2, 'Paulista', 'Feminino'),
         (3, 'Nacional', 'Feminino');
         
-
- INSERT INTO usuario (nome, cpf, email, senha, perfil) 
- VALUES ('Lucas Saatkamp', '12312312332', 'lucas@gmail.com', '1212', 'atleta'),
-        ('Darlan Souza', '12312332112', 'darlan@gmail.com', '1212', 'atleta'),
-        ('Javad Karimi', '32132132112', 'javad@gmail.com', '1212', 'atleta'),
-        ('Isac Santos', '65465445643', 'isac@gmail.com', '1212', 'atleta'),
-        ('Otávio Pinto', '87667865456', 'otavio@gmail.com', '1212', 'atleta'),
-        ('Rafael Forster', '86576556754', 'rafa@gmail.com', '1212', 'atleta'); 
-
 
 select * from usuario;
 select * from jogo;

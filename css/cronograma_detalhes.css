@@ -1,77 +1,181 @@
+/* ============================
+      ESTILO GERAL
+============================ */
 body{
-  background:#f4efef;
-  font-family:'Arial';
+    background:#f4efef;
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
 }
 
+.container-cronograma{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ============================
+      VOLTAR
+============================ */
 .voltar-topo{
-  font-size:26px;
-  margin:15px;
-  display:inline-block;
-  text-decoration:none;
-  color:#000;
+    font-size:26px;
+    text-decoration:none;
+    color:#000;
+    display:inline-block;
+    margin-bottom:10px;
+    transition:0.2s;
+}
+
+.voltar-topo:hover{
+    transform: translateX(-4px);
+}
+
+/* ============================
+      TÍTULO / MÊS
+============================ */
+.titulo-area{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.select-mes{
+    background:#eceaea;
+    padding:10px 14px;
+    border-radius:8px;
+    border:none;
+    font-size:18px;
+    margin-bottom:6px;
+    cursor:pointer;
 }
 
 .titulo{
-  text-align:center;
-  font-size:38px;
-  margin-top:-20px;
+    font-size:34px;
+    margin:5px 0 0 0;
 }
 
+/* ============================
+      FILTROS
+============================ */
 .filtros{
-  display:flex;
-  justify-content:center;
-  margin-top:10px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:10px;
+    flex-wrap:wrap;
 }
 
 .filtro{
-  background:#ede6e6;
-  padding:10px 20px;
-  margin:0 10px;
-  font-size:20px;
-  border-radius:6px;
-  cursor:pointer;
+    background:#eceaea;
+    padding:12px 18px;
+    border-radius:8px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
+.filtro select{
+    margin-top:6px;
+    padding:8px 12px;
+    border:none;
+    border-radius:6px;
+    background:#fff;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.label-text{
+    font-size:14px;
+    font-weight:bold;
+}
+
+/* ============================
+      LISTA DE JOGOS
+============================ */
 .lista-jogos{
-  margin:30px;
+    margin-top:25px;
 }
 
+/* ============================
+      ITEM DO JOGO
+============================ */
 .item{
-  display:flex;
-  align-items:center;
-  background:#ede6e6;
-  padding:15px;
-  margin-bottom:18px;
-  border-radius:10px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    background:#fff;
+    padding:18px;
+    margin-bottom:18px;
+    border-radius:10px;
+    box-shadow:0 2px 4px rgba(0,0,0,0.12);
 }
 
+/* ============================
+      TIMES E LOGOS
+============================ */
 .left{
-  display:flex;
-  align-items:center;
-  width:200px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-width:180px;
 }
 
 .left img{
-  width:60px;
+    width:55px;
+    height:55px;
+    object-fit:contain;
 }
 
 .x{
-  font-size:26px;
-  font-weight:bold;
-  margin:0 10px;
+    font-size:22px;
+    font-weight:bold;
 }
 
+/* ============================
+      INFORMAÇÕES DO JOGO
+============================ */
 .info{
-  flex:1;
-  font-size:18px;
+    flex:1;
+    font-size:17px;
+    line-height:22px;
 }
 
+/* ============================
+      BOTÃO DE AÇÃO
+============================ */
 .btn{
-  background:#000;
-  color:#fff;
-  padding:10px 18px;
-  font-size:16px;
-  border-radius:5px;
-  text-decoration:none;
-  font-weight:bold;
+    background:#000;
+    color:#fff;
+    padding:12px 18px;
+    font-size:15px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.2s;
+    white-space:nowrap;
+}
+
+.btn:hover{
+    background:#222;
+}
+
+/* ============================
+      RESPONSIVIDADE
+============================ */
+@media (max-width: 700px){
+    .item{
+        flex-direction:column;
+        text-align:center;
+        gap:14px;
+    }
+
+    .left{
+        min-width:unset;
+    }
+
+    .btn{
+        width:100%;
+        text-align:center;
+        padding:14px;
+    }
 }

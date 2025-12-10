@@ -93,11 +93,11 @@
                 <img src="./img/cronograma.png" alt="Ícone Cronograma">
                 
             </a>
-            <a href="classificacoes.php" class="footer-item">
+            <a href="manutencao_atleta.php" class="footer-item">
                 <img src="./img/classificacoes.png" alt="Ícone Classificações">
                 
             </a>
-            <a href="resultados.php" class="footer-item">
+            <a href="manutencao_atleta.php" class="footer-item">
                 <img src="./img/resultados.png" alt="Ícone Resultados">
                 
             </a>
